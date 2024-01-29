@@ -1,17 +1,12 @@
-import { AppContext, useAppContext } from "@/context/AppProvider";
+import { useUserContext } from "@/context/user-context";
 import Image from "next/image";
 import { useContext } from "react";
 function NavbarUserAvatar(props: any) {
-  const context = useAppContext();
+  const [state, dispatch] = useUserContext();
   return (
     <>
-      {context.user.avatar ? (
-        <Image
-          src={context?.user?.avatar}
-          alt="avatar"
-          width={50}
-          height={50}
-        />
+      {state.user.avatar ? (
+        <Image src={state.user.avatar} alt="avatar" width={50} height={50} />
       ) : (
         <p>Loading...</p>
       )}

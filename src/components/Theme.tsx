@@ -1,20 +1,20 @@
-import { AppContext } from "@/context/AppProvider";
+import { useThemeContext } from "@/context/theme-context";
 import React, { useContext } from "react";
 
 function Theme() {
-  const context = useContext(AppContext);
+  const [state, dispatch] = useThemeContext();
   return (
     <span
       className={`fixed bottom-8 right-8 z-10 w-10 h-10 flex items-center justify-center rounded-full p-8 hover:cursor-pointer ${
-        context.isDark ? "bg-white text-black" : " bg-black text-white"
+        state.isDark ? "bg-white text-black" : "bg-black text-white"
       }`}
-      onClick={(e) => {
-        context.setIsDark((prevIsDark: boolean) => {
-          return !prevIsDark;
+      onClick={() => {
+        dispatch({
+          type: "TOGGLE_THEME",
         });
       }}
     >
-      {context.isDark ? "Light" : "Dark"}
+      {state.isDark ? "Light" : "Dark"}
     </span>
   );
 }

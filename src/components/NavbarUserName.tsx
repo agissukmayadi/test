@@ -1,13 +1,13 @@
-import { AppContext, useAppContext } from "@/context/AppProvider";
+import { useUserContext } from "@/context/user-context";
 import { useContext } from "react";
 
 function NavbarUserName(props: any) {
-  const context = useAppContext();
+  const [state, dispatch] = useUserContext();
   return (
     <>
-      {context.user.name ? (
-        <span className="" onClick={context.alert}>
-          {context.user.name}
+      {state.user.name ? (
+        <span className="" onClick={state.alert}>
+          {state.user.name}
         </span>
       ) : (
         <p>Loading...</p>
